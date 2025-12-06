@@ -1,4 +1,9 @@
 const http = require('http');
+const fs = require('fs');
+
+const aboutPage = fs.readFileSync('about.html');
+const contactPage = fs.readFileSync('contact.html');
+const homePage = fs.readFileSync('index.html');
 
 // Create server
 const server = http.createServer((request, response) => {
