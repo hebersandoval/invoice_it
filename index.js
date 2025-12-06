@@ -4,6 +4,7 @@ const fs = require('fs');
 const aboutPage = fs.readFileSync('about.html');
 const contactPage = fs.readFileSync('contact.html');
 const homePage = fs.readFileSync('index.html');
+const pageNotFound = fs.readFileSync('404.html');
 
 // Create server
 const server = http.createServer((request, response) => {
@@ -12,15 +13,15 @@ const server = http.createServer((request, response) => {
     console.log(request.url);
 
     if (request.url === '/about') {
-        return response.end('About page');
+        return response.end(aboutPage);
     } else if (request.url === '/contact') {
-        return response.end('Contact page');
+        return response.end(contactPage);
     } else if (request.url == '/') {
-        return response.end('Blog it!');
+        return response.end(homePage);
     } else {
         response.writeHead(404);
 
-        response.end('Page not found');
+        response.end(pageNotFound);
     }
 });
 
