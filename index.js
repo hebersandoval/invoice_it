@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 
-const templeEngine = require('express-edge');
+const edgeTempleEngine = require('express-edge');
 
 const app = express();
 const port = 3000;
@@ -10,12 +10,12 @@ const port = 3000;
 app.use(express.static('public'));
 
 // Sets view engine
-app.use(templeEngine);
-app.set('view engine', 'hbs');
+app.use(edgeTempleEngine);
 app.set('views', `${__dirname}/views`);
 
+// Routes
 app.get('/', (request, response) => {
-    response.sendFile(path.resolve(__dirname, 'pages/index.html'));
+    response.render('index');
 });
 
 app.get('/about', (request, response) => {
@@ -24,6 +24,10 @@ app.get('/about', (request, response) => {
 
 app.get('/contact', (request, response) => {
     response.sendFile(path.resolve(__dirname, 'pages/contact.html'));
+});
+
+app.get('/post', (request, response) => {
+    response.sendFile(path.resolve(__dirname, 'pages/post.html'));
 });
 
 app.listen(port, () => {
