@@ -7,6 +7,9 @@ const { engine } = require('express-handlebars');
 const app = express();
 const port = 3000;
 
+// Connect to mongoose
+mongoose.connect('mongodb://localhost/blogit');
+
 // Use assets
 app.use(express.static('public'));
 
