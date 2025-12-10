@@ -3,12 +3,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 
+require('dotenv').config();
+require('./database/dbConnect');
+
 const { engine } = require('express-handlebars');
 
 const app = express();
-
-// Connect to mongoose
-mongoose.connect('mongodb://localhost/invoice_db');
 
 // Use assets
 app.use(express.static('public'));
