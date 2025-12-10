@@ -42,6 +42,7 @@ app.get('/invoice', (request, response) => {
     response.render('invoice');
 });
 
+// Catch-all route with middleware-style handler
 app.use((request, response) => {
     response.status(404).send('Page Not Found');
 });
