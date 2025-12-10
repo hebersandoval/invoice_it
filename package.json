@@ -1,14 +1,14 @@
 {
-    "name": "blog_it",
+    "name": "invoice_it",
     "version": "1.0.0",
     "description": "",
-    "homepage": "https://github.com/hebersandoval/blog_it#readme",
+    "homepage": "https://github.com/hebersandoval/invoice_it#readme",
     "bugs": {
-        "url": "https://github.com/hebersandoval/blog_it/issues"
+        "url": "https://github.com/hebersandoval/invoice_it/issues"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/hebersandoval/blog_it.git"
+        "url": "git+https://github.com/hebersandoval/invoice_it.git"
     },
     "license": "ISC",
     "author": "",

@@ -5,10 +5,9 @@ const mongoose = require('mongoose');
 const { engine } = require('express-handlebars');
 
 const app = express();
-const port = 3000;
 
 // Connect to mongoose
-mongoose.connect('mongodb://localhost/blogit');
+mongoose.connect('mongodb://localhost/invoice_db');
 
 // Use assets
 app.use(express.static('public'));
@@ -39,10 +38,16 @@ app.get('/contact', (request, response) => {
     response.render('contact');
 });
 
-app.get('/post', (request, response) => {
-    response.render('post');
+app.get('/invoice', (request, response) => {
+    response.render('invoice');
 });
 
-app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
+app.use((request, response) => {
+    response.status(404).send('Page Not Found');
+});
+
+const PORT = 3000;
+
+app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}`);
 });
