@@ -3,10 +3,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 
-require('dotenv').config();
-require('./database/dbConnect');
+require('dotenv').config({ debug: true });
+require('./libs/dbConnect');
 
 const { engine } = require('express-handlebars');
+
+const userRouter = require('./routes/user.route');
 
 const app = express();
 
@@ -33,6 +35,9 @@ app.get('/', (request, response) => {
     response.render('index');
 });
 
+// Users
+app.use('/users', userRouter);
+
 app.get('/about', (request, response) => {
     response.render('about');
 });
@@ -46,9 +51,11 @@ app.get('/invoice', (request, response) => {
 });
 
 // Catch-all route with middleware-style handler
+/*
 app.use((request, response) => {
     response.status(404).render('index', { message: 'Page not found' });
 });
+*/
 
 const PORT = 3000;
 

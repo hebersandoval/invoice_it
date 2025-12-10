@@ -1,0 +1,15 @@
+<!-- Users -->
+
+<h2>User 1</h2>
+
+<div class='container my-5'>
+    <div class='p-5 text-center bg-body-tertiary rounded-3'>
+        <h1 class='text-body-emphasis'>{{message}}</h1>
+        {{#if user}}
+            <p class='lead'>{{user.email}}</p>
+            <p>{{user._id}}</p>
+        {{else}}
+            <p>No user data</p>
+        {{/if}}
+    </div>
+</div>
