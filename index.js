@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 
 const { engine } = require('express-handlebars');
 
@@ -11,6 +12,8 @@ mongoose.connect('mongodb://localhost/invoice_db');
 
 // Use assets
 app.use(express.static('public'));
+// Report detailed logs
+app.use(morgan('dev'));
 
 // Sets view engine
 app.set('views', `${__dirname}/views`);
