@@ -10,7 +10,7 @@ const createUser = async (request, response) => {
 };
 
 const getUser = async (request, response) => {
-    const user = await User.findOne({ email: 'bob@mail.com' });
+    const user = await User.findOne({ email: 'bob@mail.com' }).lean();
 
     response.render('user', { message: 'User retrieved', user: user });
 };
