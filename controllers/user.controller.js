@@ -1,5 +1,6 @@
 const User = require('../libs/models/user.model');
 
+/*
 const createUser = async (request, response) => {
     await User.create({
         email: 'bob@mail.com',
@@ -20,9 +21,30 @@ const deleteUser = async (request, response) => {
 
     response.render('user', { message: 'User deleted', user: null });
 };
+*/
+
+const signup = async (request, response) => {
+    const { email, password } = request.body;
+    const query = { email };
+
+    const existingUser = await User.findOne(query);
+
+    if (existingUser) {
+        // Email already exists
+        response.redirect('/signup');
+    } else {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = {
+            email,
+            password: hashedPassword,
+        };
+
+        const result = await User.create(user);
+        request.session.userId = result._id;
+        response.redirect('/dashboard');
+    }
+};
 
 module.exports = {
-    getUser,
-    createUser,
-    deleteUser,
+    signup,
 };
