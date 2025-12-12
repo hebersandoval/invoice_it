@@ -40,25 +40,11 @@ app.engine(
 app.set('view engine', '.hbs');
 
 // Routes
-app.get('/', (request, response) => {
-    response.render('index');
+app.use('/', userRouter);
+
+app.use((request, response) => {
+    response.status(404).render('index', { message: 'Page not found' });
 });
-
-// Users
-app.use('/users', userRouter);
-
-app.get('/about', (request, response) => {
-    response.render('about');
-});
-
-app.get('/contact', (request, response) => {
-    response.render('contact', { message: 'We will respond in a jiffy' });
-});
-
-app.get('/invoice', (request, response) => {
-    response.render('invoice');
-});
-
 const PORT = 3000;
 
 app.listen(PORT, () => {
