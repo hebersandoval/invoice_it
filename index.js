@@ -8,7 +8,7 @@ const flash = require('connect-flash');
 require('dotenv').config({ debug: true });
 require('./libs/dbConnect');
 
-const { engine } = require('express-handlebars');
+// const { engine } = require('express-handlebars');
 
 const userRouter = require('./routes/user.route');
 
@@ -35,6 +35,8 @@ app.use(flash());
 
 // Sets view engine
 app.set('views', `${__dirname}/views`);
+
+/*
 app.engine(
     '.hbs',
     engine({
@@ -44,7 +46,9 @@ app.engine(
         defaultLayout: 'main.hbs',
     })
 );
-app.set('view engine', '.hbs');
+*/
+
+app.set('view engine', '.ejs');
 
 // Routes
 app.use('/', userRouter);
