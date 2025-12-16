@@ -12,9 +12,11 @@ const validateSignup = [
 
 const signup = async (request, response) => {
     const validationErrors = validationResult(request);
+
     if (!validationErrors.isEmpty()) {
         const errors = validationErrors.array();
         request.flash('errors', errors);
+        request.flash('data', request.body);
 
         return response.redirect('/signup');
     }
