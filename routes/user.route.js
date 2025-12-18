@@ -16,8 +16,9 @@ router.get('/login', (request, response) => {
 router.get('/signup', (request, response) => {
     response.render('pages/signup', {
         title: 'Sign up',
-        errors: request.flash('errors'),
         user: request.flash('data')[0],
+        info: request.flash('info')[0],
+        errors: request.flash('errors'),
     });
 });
 

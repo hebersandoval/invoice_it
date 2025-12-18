@@ -28,6 +28,12 @@ const signup = async (request, response) => {
 
     if (existingUser) {
         // Email already exists
+        request.flash('data', request.body);
+        request.flash('info', {
+            message: 'Email is already registered. Try to login instead',
+            type: 'error',
+        });
+
         response.redirect('/signup');
     } else {
         const hashedPassword = await bcrypt.hash(password, 10);
