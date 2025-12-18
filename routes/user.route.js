@@ -24,4 +24,10 @@ router.get('/signup', (request, response) => {
 
 router.post('/signup', validateSignup, signup);
 
+router.get('/login', (request, response) => {
+    response.render('pages/login', {
+        title: 'Sign in',
+    });
+});
+
 module.exports = router;
