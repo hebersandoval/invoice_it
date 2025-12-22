@@ -12,6 +12,11 @@ const validateSignup = [
     body('repeatPassword', 'Passwords do not match').custom((value, { req }) => value === req.body.password),
 ];
 
+const validateLogin = [
+    body('email', 'Email must not be empty').notEmpty(),
+    body('password', 'Password must not be empty').notEmpty(),
+];
+
 const signup = async (request, response) => {
     const validationErrors = validationResult(request);
 
