@@ -29,4 +29,8 @@ router.get('/login', (request, response) => {
     });
 });
 
+router.post('/login', validateLogin, login);
+
+router.get('/logout', logout);
+
 module.exports = router;
