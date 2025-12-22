@@ -1,6 +1,10 @@
-<nav class="p-3">
-    <a href="/" class="me-3">Home</a>
-    <a href="/signup" class="me-3">Sign up</a>
-    <a href="/about" class="me-3">About us</a>
-    <a href="/contact">Contact</a>
+<nav>
+    <h1>My Website</h1>
+    <div>
+        <a href="/" onclick="showPage('home')">Home</a>
+        <a href="/signup" onclick="showPage('login')" id="loginLink">Sign up</a>
+        <a href="/login" onclick="showPage('login')" id="loginLink">Login</a>
+        <a href="#" onclick="showPage('dashboard')" id="dashLink" class="hidden">Dashboard</a>
+        <a href="/logout" onclick="logout()" id="logoutLink" class="hidden">Logout</a>
+    </div>
 </nav>

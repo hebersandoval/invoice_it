@@ -5,49 +5,23 @@
         <%- include('../partials/nav') %>
 
         <!-- Content body here -->
-        <h2>Sign up</h2>
-
-        <div class="container my-5">
-            <div class="p-5 text-center bg-body-tertiary rounded-3">
-                <h1 class="text-body-emphasis"><% title %></h1>
-                <p class="lead">Create an account today.</p>
-            </div>
-
-            <!-- Form -->
-            <form action="/signup" method="post">
+        <main id="loginPage" class="">
+            <h2>Sign up</h2>
+            <form action="/signup" method="POST">
                 <%- include('../partials/formErrors') %>
 
-                <div class="mb-3">
-                    <label for="inputEmail" class="form-label">Email address</label>
-                    <input
-                        name="email"
-                        type="email"
-                        class="form-control"
-                        id="inputEmail"
-                        value="<%= user?.email || '' %>"
-                        placeholder="name@example.com" />
-                </div>
-                <div class="mb-3">
-                    <label for="inputPassword" class="form-label">Password</label>
-                    <input
-                        name="password"
-                        type="password"
-                        id="inputPassword"
-                        class="form-control"
-                        value="<%= user?.password || '' %>" />
-                </div>
-                <div class="mb-3">
-                    <label for="inputPassword" class="form-label">Renter password</label>
-                    <input
-                        name="repeatPassword"
-                        type="password"
-                        id="inputPassword"
-                        class="form-control"
-                        value="<%= user?.repeatPassword || '' %>" />
-                </div>
-                <button type="submit" class="btn btn-primary">Sign up</button>
+                <label for="email">Email</label>
+                <input name="email" type="email" id="email" value="<%= user?.email || '' %>" />
+
+                <label for="password">Password</label>
+                <input name="password" type="password" id="password" value="<%= user?.password || '' %>" />
+
+                <label for="password">Renter password</label>
+                <input name="repeatPassword" type="password" id="password" value="<%= user?.repeatPassword || '' %>" />
+
+                <button type="submit">Sign up</button>
             </form>
-        </div>
+        </main>
 
         <%- include('../partials/footer') %>
 

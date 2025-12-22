@@ -5,41 +5,28 @@
         <%- include('../partials/nav') %>
 
         <!-- Content body here -->
-        <h2>Log in</h2>
-
-        <div class="container my-5">
-            <div class="p-5 text-center bg-body-tertiary rounded-3">
-                <h1 class="text-body-emphasis"><% title %></h1>
-                <p class="lead">Enter your account.</p>
-            </div>
-
-            <!-- Form -->
-            <form action="/login" method="post">
+        <main id="loginPage" class="">
+            <h2>Log in</h2>
+            <form action="/login" method="POST">
                 <%- include('../partials/formErrors') %>
 
-                <div class="mb-3">
-                    <label for="inputEmail" class="form-label">Email address</label>
-                    <input
-                        name="email"
-                        type="email"
-                        class="form-control"
-                        id="inputEmail"
-                        value="<%= user?.email || '' %>"
-                        placeholder="name@example.com" />
-                </div>
-                <div class="mb-3">
-                    <label for="inputPassword" class="form-label">Password</label>
-                    <input
-                        name="password"
-                        type="password"
-                        id="inputPassword"
-                        class="form-control"
-                        value="<%= user?.password || '' %>" />
-                </div>
-                <button type="submit" class="btn btn-primary">Log in</button>
-                <span>Don't have an account?<a href="/signup">Sign up</a></span>
+                <label for="email">Email</label>
+                <input name="email" type="email" id="email" value="<%= user?.email || '' %>" required />
+
+                <label for="password">Password</label>
+                <input
+                    name="password"
+                    type="password"
+                    name="password"
+                    id="password"
+                    value="<%= user?.password || '' %>"
+                    required />
+
+                <button type="submit">Log in</button>
+
+                <p>Don't have an account?<a href="/signup">Sign up</a></p>
             </form>
-        </div>
+        </main>
 
         <%- include('../partials/footer') %>
 
