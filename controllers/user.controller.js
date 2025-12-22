@@ -61,7 +61,53 @@ const signup = async (request, response) => {
     }
 };
 
+const login = async (request, response) => {
+    const validationErrors = validationResult(request);
+
+    if (!validationErrors.isEmpty()) {
+        const errors = validationErrors.array();
+        request.flash('errors', errors);
+        request.flash('data', request.body);
+
+        return response.redirect('/login');
+    }
+
+    const { email, password } = request.body;
+    const user = await User.findOne({ email });
+
+    if (user) {
+        const passwordMatch = await bcrypt.compare(password, user.password);
+
+        if (passwordMatch) {
+            request.session.userId = user._id;
+            request.flash('info', {
+                message: 'Login succesful',
+                type: 'success',
+            });
+
+            response.redirect('/dashboard');
+        } else {
+            request.flash('info', {
+                message: 'Wrong password',
+                type: 'error',
+            });
+
+            request.flash('data', request.body);
+            response.redirect('/login');
+        }
+    } else {
+        request.flash('info', {
+            message: 'Email is not registered',
+            type: 'error',
+        });
+
+        request.flash('data', request.body);
+        response.redirect('/login');
+    }
+};
+
 module.exports = {
     signup,
     validateSignup,
+    login,
 };
