@@ -106,8 +106,20 @@ const login = async (request, response) => {
     }
 };
 
+logout = (request, response) => {
+    request.session.userId = null;
+    request.flash('info', {
+        message: 'Logout successful',
+        type: 'success',
+    });
+
+    response.redirect('/');
+};
+
 module.exports = {
     signup,
     validateSignup,
     login,
+    validateLogin,
+    logout,
 };
