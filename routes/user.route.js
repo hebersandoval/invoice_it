@@ -6,7 +6,10 @@ const { validateSignup, signup, validateLogin, login, logout } = require('../con
 
 // User routes
 router.get('/', (request, response) => {
-    response.render('pages/index', { title: 'Invoice it!' });
+    response.render('pages/index', {
+        title: 'Invoice it!',
+        info: request.flash('info')[0],
+    });
 });
 
 router.get('/signup', (request, response) => {
