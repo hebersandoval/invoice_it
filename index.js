@@ -56,7 +56,7 @@ app.use('/', userRouter);
 app.use('/dashboard', dashoardRouter);
 
 app.use((request, response) => {
-    response.status(404).render('index', { message: 'Page not found' });
+    response.status(404).render('index', { message: 'Page not found', title: 'Lost?' });
 });
 const PORT = 3000;
 
