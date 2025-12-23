@@ -11,16 +11,10 @@
                 <%- include('../partials/formErrors') %>
 
                 <label for="email">Email</label>
-                <input name="email" type="email" id="email" value="<%= user?.email || '' %>" required />
+                <input name="email" type="email" id="email" value="<%= user?.email || '' %>" />
 
                 <label for="password">Password</label>
-                <input
-                    name="password"
-                    type="password"
-                    name="password"
-                    id="password"
-                    value="<%= user?.password || '' %>"
-                    required />
+                <input name="password" type="password" id="password" value="<%= user?.password || '' %>" />
 
                 <button type="submit">Log in</button>
 
