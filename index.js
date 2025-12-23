@@ -14,6 +14,8 @@ const userRouter = require('./routes/user.route');
 
 const dashoardRouter = require('./routes/dashboard.route');
 
+const { verifyUser } = require('./libs/middleware');
+
 const app = express();
 
 // Use assets
@@ -53,7 +55,8 @@ app.set('view engine', '.ejs');
 // Routes
 app.use('/', userRouter);
 
-app.use('/dashboard', dashoardRouter);
+// Verification middleware
+app.use('/dashboard', verifyUser, dashoardRouter);
 
 app.use((request, response) => {
     response.status(404).render('index', { message: 'Page not found', title: 'Lost?' });
