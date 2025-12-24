@@ -9,3 +9,18 @@ const validateInvoice = [
     body('date', 'Due date must not be empty').notEmpty(),
     body('status', 'Select the status').notEmpty(),
 ];
+
+// Show
+const showInvoices = async (request, response) => {
+    const query = { owner: request.session.userId };
+
+    const invoices = await Invoice.find(query);
+    response.render('pages/invoices', {
+        title: 'Invoices',
+        type: 'data',
+        invoices,
+        info: request.flash('info')[0],
+    });
+};
+
+module.exports = { showInvoices };
