@@ -15,4 +15,6 @@ router.get('/create', function (request, response) {
     });
 });
 
+router.post('/create', validateCustomer, createCustomer);
+
 module.exports = router;
