@@ -81,10 +81,23 @@ const updateCustomer = async (request, response) => {
     response.redirect('/dashboard/customers');
 };
 
+const deleteCustomer = async (request, response) => {
+    const customerId = request.params.id;
+
+    await Customer.findByIdAndDelete(customerId);
+    request.flash('info', {
+        message: 'Customer deleted',
+        type: 'success',
+    });
+
+    response.redirect('/dashboard/customers');
+};
+
 module.exports = {
     showCustomers,
     createCustomer,
     editCustomer,
     updateCustomer,
+    deleteCustomer,
     validateCustomer,
 };
