@@ -1,0 +1,186 @@
+<!-- Customer's search bar -->
+<section>
+    <form action="#" method="#">
+        <%- include('../partials/formErrors') %>
+
+        <div style="max-width: 500px;">
+            <!-- <label for="search">Name</label> -->
+            <input 
+                type="text" 
+                id="search" 
+                name="search" 
+                placeholder="Search customers..." 
+                value="<%= typeof query !== 'undefined' ? query.name || '' : '' %>"
+                />
+
+            <button type="submit">Search</button>
+            <!-- <a href="/dashboard/customers" style="margin-left: 1rem; color: #3498db;">Clear</a> -->
+            <a href="customers/create" style="margin-left: 1rem; color: #3498db;">New customer</a>
+        </div>
+    </form>
+</section>
+
+<!-- Customer's table -->
+<section>
+    <h2>Customers</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Action</th>
+            <!-- <th></th> -->
+        </tr>
+        </thead>
+
+        <tbody>
+        <% customers.forEach(function(customer){ %>
+            <tr>
+                <td> <%= customer.name %> </td>
+                <td> <%= customer.email %> </td>
+                <td> <%= customer.address %> </td>
+                <td> <%= customer.phone %> </td>
+                <td style="padding: 1rem; text-align: center">
+                    <!-- Edit Link -->
+                    <a
+                        href="/dashboard/customers/<%= customer._id %>/edit"
+                        style="color: #3498db; margin-right: 1.5rem; font-weight: 500"
+                    >
+                        Edit
+                    </a>
+
+                    <!-- Delete Form (POST for safety) -->
+                    <form
+                        action="customers/<%= customer._id %>/delete"
+                        method="POST"
+                        style="display: inline"
+                        onsubmit="return confirm('Are you sure you want to delete <%= customer.name %>? This action cannot be undone.');"
+                    >
+                        <button
+                            type="submit"
+                            style="
+                                background: #e74c3c;
+                                padding: 0.5rem 1rem;
+                                font-size: 0.9rem;
+                                border: none;
+                                border-radius: 4px;
+                                color: white;
+                                cursor: pointer;
+                            "
+                        >
+                            Delete
+                        </button>
+                    </form>
+
+                    <!-- Uses a modal -->
+                    <button class="btn btn-danger" onclick="deleteModal('<%= customer._id %>')">Delete</button>
+                </td>
+
+
+                <td><a href="customers/<%= customer._id %>/edit"><i></i></a></td>
+                <td></td>
+            </tr>
+            <!-- <tr>
+                <td>Jane Smith</td>
+                <td>jane.smith@example.com</td>
+                <td>456 Oak Ave, Los Angeles, CA</td>
+                <td>(555) 234-5678</td>
+                <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Mike Johnson</td>
+                <td>mike.j@example.com</td>
+                <td>789 Elm St, Chicago, IL</td>
+                <td>(555) 345-6789</td>
+                <td><button class="btn btn-danger">Delete</button></td>
+            </tr> -->
+        <% }); %>
+        </tbody>
+    </table>
+</section>
+
+<dialog id="delete-modal-2" class="modal">
+    <div class="modal-box">
+        <h3 class="font-bold text-lg">Are you sure?</h3>
+        <p class="py-4">All invoices related to the customer will be deleted</p>
+        <div class="modal-action">
+            <form id="delete-form-2" method="post"><button class="btn btn-danger">Yes</button></form>
+            <form method="dialog"><button class="btn">Cancel</button></form>
+        </div>
+    </div>
+</dialog>
+
+<!-- Delete Confirmation Modal -->
+<dialog id="delete-modal">
+    <div
+        style="
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 90%;
+            margin: auto;
+        "
+    >
+        <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: #2c3e50">Are you sure?</h3>
+        <p style="padding: 1rem 0; color: #333; line-height: 1.6">
+            Deleting this customer will also permanently delete all related invoices. This action cannot be undone.
+        </p>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem">
+            <!-- Cancel Button (closes dialog) -->
+            <form method="dialog" style="display: inline">
+                <button
+                    type="submit"
+                    style="
+                        background: #bdc3c7;
+                        color: #2c3e50;
+                        padding: 0.75rem 2rem;
+                        border: none;
+                        border-radius: 4px;
+                        font-size: 1rem;
+                        cursor: pointer;
+                    "
+                    onmouseover="this.style.background='#95a5a6'"
+                    onmouseout="this.style.background='#bdc3c7'"
+                >
+                    Cancel
+                </button>
+            </form>
+
+            <!-- Confirm Delete Button -->
+            <form id="delete-form" method="POST" style="display: inline">
+                <button
+                    type="submit"
+                    style="
+                        background: #e74c3c;
+                        color: white;
+                        padding: 0.75rem 2rem;
+                        border: none;
+                        border-radius: 4px;
+                        font-size: 1rem;
+                        cursor: pointer;
+                    "
+                    onmouseover="this.style.background='#c0392b'"
+                    onmouseout="this.style.background='#e74c3c'"
+                >
+                    Yes, Delete
+                </button>
+            </form>
+        </div>
+    </div>
+</dialog>
+
+
+<script>
+  function deleteModal(customerId){
+    const modal = document.querySelector('#delete-modal');
+    const deleteForm = document.querySelector('#delete-form');
+    deleteForm.setAttribute('action', `customers/${customerId}/delete`)
+    modal.showModal();
+  }
+</script>
+
