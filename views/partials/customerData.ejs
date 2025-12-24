@@ -52,11 +52,11 @@
                     </a>
 
                     <!-- Delete Form (POST for safety) -->
-                    <form
-                        action="customers/<%= customer._id %>/delete"
+                    <!-- <form
+                        action="customers/<%# customer._id %>/delete"
                         method="POST"
                         style="display: inline"
-                        onsubmit="return confirm('Are you sure you want to delete <%= customer.name %>? This action cannot be undone.');"
+                        onsubmit="return confirm('Are you sure you want to delete <%# customer.name %>? This action cannot be undone.');"
                     >
                         <button
                             type="submit"
@@ -72,7 +72,7 @@
                         >
                             Delete me
                         </button>
-                    </form>
+                    </form> -->
 
                     <!-- Uses a modal -->
                     <button class="btn btn-danger" onclick="deleteModal('<%= customer._id %>')">Delete</button>
@@ -82,35 +82,10 @@
                 <td><a href="customers/<%= customer._id %>/edit"><i></i></a></td>
                 <td></td>
             </tr>
-            <!-- <tr>
-                <td>Jane Smith</td>
-                <td>jane.smith@example.com</td>
-                <td>456 Oak Ave, Los Angeles, CA</td>
-                <td>(555) 234-5678</td>
-                <td><button class="btn btn-danger">Delete</button></td>
-            </tr>
-            <tr>
-                <td>Mike Johnson</td>
-                <td>mike.j@example.com</td>
-                <td>789 Elm St, Chicago, IL</td>
-                <td>(555) 345-6789</td>
-                <td><button class="btn btn-danger">Delete</button></td>
-            </tr> -->
         <% }); %>
         </tbody>
     </table>
 </section>
-
-<dialog id="delete-modal-2" class="modal">
-    <div class="modal-box">
-        <h3 class="font-bold text-lg">Are you sure?</h3>
-        <p class="py-4">All invoices related to the customer will be deleted</p>
-        <div class="modal-action">
-            <form id="delete-form-2" method="post"><button class="btn btn-danger">Yes</button></form>
-            <form method="dialog"><button class="btn">Cancel</button></form>
-        </div>
-    </div>
-</dialog>
 
 <!-- Delete Confirmation Modal -->
 <dialog id="delete-modal">
