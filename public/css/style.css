@@ -107,6 +107,7 @@ button:hover {
     flex: 1;
 }
 
+/* Sidebar styling */
 .sidebar {
     width: 200px;
     background: #ecf0f1;
@@ -115,6 +116,7 @@ button:hover {
     height: fit-content;
 }
 
+/* Sidebar links styling */
 .sidebar a {
     display: block;
     padding: 0.75rem;
@@ -156,4 +158,62 @@ footer {
     background: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
+}
+
+/* Base button styling */
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+/* Danger button (red) */
+.btn-danger {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Table header styling */
+thead {
+    background: #2c3e50;
+    color: white;
+}
+
+/* Table header cells */
+th {
+    text-align: left;
+    padding: 1rem;
+    font-weight: 600;
+}
+
+/* Table data cells */
+td {
+    padding: 1rem;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+/* Table row hover effect */
+tbody tr:hover {
+    background: #f8f9fa;
+}
+
+/* Remove border from last row */
+tbody tr:last-child td {
+    border-bottom: none;
 }
