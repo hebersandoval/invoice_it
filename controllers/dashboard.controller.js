@@ -29,6 +29,8 @@ const showDashboard = async (request, response) => {
     // Sort invoices in descending order
     allInvoices.sort((a, b) => new Date(b.date) - new Date(a.date));
 
+    const latestInvoices = allInvoices.slice(0, 5);
+
     // Data to load chart
     const revenueData = [];
 
@@ -52,6 +54,7 @@ const showDashboard = async (request, response) => {
         title: 'Dashboard',
         // Data for chart
         revenueData: JSON.stringify(revenueData),
+        latestInvoices,
         invoiceCount,
         customerCount,
         totalPaid,

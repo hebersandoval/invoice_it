@@ -59,26 +59,22 @@
                                 <p>View your most recent invoice transactions and their status.</p>
 
                                 <!-- Invoice list -->
-                                <div class="invoice-item">
-                                    <span>John Doe</span>
-                                    <span class="status status-pending">Pending</span>
-                                    <span>$1,250</span>
-                                </div>
-                                <div class="invoice-item">
-                                    <span>Jane Smith</span>
-                                    <span class="status status-paid">Paid</span>
-                                    <span>$3,400</span>
-                                </div>
-                                <div class="invoice-item">
-                                    <span>Mike Johnson</span>
-                                    <span class="status status-pending">Pending</span>
-                                    <span>$850</span>
-                                </div>
+                                 <% latestInvoices.forEach(invoice => { %>
+                                    <div class="invoice-item">
+                                        <span><%= invoice.customer.name %></span>
+                                        <% if(invoice.status === 'paid') { %>
+                                            <span class="status status-paid">Paid</span>
+                                        <% } else { %>
+                                            <span class="status status-pending">Pending</span>
+                                        <% } %>
+                                        <span><%= USDollar.format(invoice.amount) %></span>
+                                    </div>
+                                <% }) %>
                             </div>
                         </div>
                     </section>
                 </div>
-            </div>            
+            </div>
         </main>
 
         <%- include('../partials/footer') %>
