@@ -25,6 +25,16 @@ const showDashboard = async (request, response) => {
     const totalPending = allInvoices.reduce((sum, invoice) => {
         return invoice.status === 'pending' ? sum + invoice.amount : sum;
     }, 0);
+
+    response.render('pages/dashboard', {
+        title: 'Dashboard',
+        invoiceCount,
+        customerCount,
+        totalPaid,
+        totalPending,
+        USDollar,
+        info: request.flash('info')[0],
+    });
 };
 
 module.exports = {
