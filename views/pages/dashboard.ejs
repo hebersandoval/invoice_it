@@ -11,7 +11,7 @@
                 <%- include('../partials/sidebar') %>
 
                 <div class="dashboard-content">
-                    <h2>Dashboard</h2>
+                    <h2><%= title %></h2>
                     <p>Welcome to your dashboard! You are now logged in.</p>
                     <section>
                         <h3>Recent Activity</h3>
@@ -23,19 +23,19 @@
                         <h3>Statistics</h3>
                         <div class="stats">
                             <div class="stat-card">
-                                <h3>$430.00</h3>
+                                <h3><%= USDollar.format(totalPaid) %></h3>
                                 <p>Collected</p>
                             </div>
                             <div class="stat-card">
-                                <h3>$150.00</h3>
+                                <h3><%= USDollar.format(totalPending) %></h3>
                                 <p>Pending</p>
                             </div>
                             <div class="stat-card">
-                                <h3>5</h3>
+                                <h3><%= invoiceCount %></h3>
                                 <p>Total invoices</p>
                             </div>
                             <div class="stat-card">
-                               <h3>5</h3>
+                               <h3><%= customerCount %></h3>
                                <p>Total customers</p> 
                             </div>
                         </div>
