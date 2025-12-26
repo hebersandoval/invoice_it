@@ -6,12 +6,18 @@ const customersRouter = require('./customer.route');
 
 const invoiceRouter = require('./invoice.route');
 
+const { showDashboard } = require('../controllers/dashboard.controller');
+
+/*
 router.get('/', (request, response) => {
     response.render('pages/dashboard', {
         title: 'Dashboard',
         info: request.flash('info')[0],
     });
 });
+*/
+
+router.get('/', showDashboard);
 
 // Customer nested under dashboard -> mysite.com/dashboard/customers
 router.use('/customers', customersRouter);
