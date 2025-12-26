@@ -65,7 +65,6 @@ const createInvoice = async (request, response) => {
 };
 
 const editInvoice = async (request, response) => {
-    console.log(request);
     const invoiceId = request.params.id;
     const invoice = await populateInvoices(Invoice.findById(invoiceId));
     const { customers } = request;
@@ -80,10 +79,34 @@ const editInvoice = async (request, response) => {
     });
 };
 
+const updateInvoice = async (request, response) => {
+    const validationErrors = validationResult(request);
+
+    if (!validationErrors.isEmpty) {
+        const errors = validationErrors.array();
+        request.flash('errors', errors);
+        request.flash('data', request.body);
+
+        return response.redirect('edit');
+    }
+
+    const invoiceId = request.params.id;
+    const data = request.body;
+
+    await Invoice.findByIdAndUpdate(invoiceId, data);
+    request.flash('info', {
+        message: 'Invoice updated',
+        type: 'success',
+    });
+
+    response.redirect('/dashboard/invoices');
+};
+
 module.exports = {
     showInvoices,
     createInvoice,
     getCustomers,
     editInvoice,
+    updateInvoice,
     validateInvoice,
 };
