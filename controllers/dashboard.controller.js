@@ -20,6 +20,11 @@ const showDashboard = async (request, response) => {
     const totalPaid = allInvoices.reduce((sum, invoice) => {
         return invoice.status === 'paid' ? sum + invoice.amount : sum;
     }, 0);
+
+    // Total amount pending
+    const totalPending = allInvoices.reduce((sum, invoice) => {
+        return invoice.status === 'pending' ? sum + invoice.amount : sum;
+    }, 0);
 };
 
 module.exports = {
