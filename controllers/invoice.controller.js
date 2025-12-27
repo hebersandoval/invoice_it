@@ -12,7 +12,19 @@ const validateInvoice = [
 ];
 
 // Pull referenced document data; pull the customer name for each invoice we have
-const populateInvoices = (query) => {
+const populateInvoices = (query, search) => {
+    const populateOptions = {
+        path: 'customer',
+        model: Customer,
+        select: '_id name',
+    };
+
+    if (search) {
+        populateOptions['match'] = { name: { $regex: search, $options: 'i' } };
+    }
+
+    return query.populate(populateOptions).then((invoices) => invoices.filter((invoices) => invoices.customer != null));
+
     return query.populate({
         path: 'customer',
         model: Customer,
@@ -24,7 +36,10 @@ const populateInvoices = (query) => {
 const showInvoices = async (request, response) => {
     const query = { owner: request.session.userId };
 
-    const invoices = await populateInvoices(Invoice.find(query));
+    // Search for invoice
+    const { search } = request.query;
+
+    const invoices = await populateInvoices(Invoice.find(query), search);
     response.render('pages/invoices', {
         title: 'Invoices',
         type: 'data',
